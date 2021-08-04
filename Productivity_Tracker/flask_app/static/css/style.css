@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 85%;
+    height: 80vh;
+}
+
+#header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#main {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 2%;
+    width: 100%;
+    gap: 20%;
+}
+
+#register {
+    width: 40%;
+}
+
+input {
+    width: 100%;
+}
+
+#flex {
+    display: flex;
+}
+
+#login-btn {
+    margin-top: 3%;
+}
+
+#error,
+#login-error {
+    color: red;
+}
+
+#error {
+    margin-top: 4%;
+}

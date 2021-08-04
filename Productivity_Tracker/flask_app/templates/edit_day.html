@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/log_day.css') }}">
+    <title>Edit Day</title>
+</head>
+<body>
+    <div class="container">
+        <div id="nav">
+            <h1>Hello, {{ logged_in_user.first_name }}</h1>
+            <div id="links">
+                <a href="/dashboard" class="btn btn-dark">Dashboard</a>
+                <a href="/logout" class="btn btn-danger">Logout</a>
+            </div>
+        </div>
+        <div id="main">
+            <h1>Edit a Day</h1>
+            <form action="/day/{{ day.id }}/update" method="post">
+                <div class="mb-3 row">
+                    <label for="hours_sleep">How many hours did you sleep last night?</label>
+                    <div class="col-sm-10">
+                        <input type="number" name="hours_sleep" id="hours_sleep" min="0" value="{{ day.hours_sleep }}">
+                    </div>
+                </div>
+                {% for message in get_flashed_messages(category_filter=['hours_sleep']) %}
+                <p class="alert alert-danger d-flex align-items-center" id="login-error">{{ message }}</p>
+                {% endfor %}
+                <div class="mb-3 row">
+                    <label for="ate_breakfast">Did you eat breakfast this morning?</label>
+                    <div class="col-sm-10">
+                        <input type="radio" name="ate_breakfast" id="ate_breakfast" value="Yes" checked> Yes
+                        <input type="radio" name="ate_breakfast" id="ate_breakfast" value="No"> No
+                    </div>
+                </div>
+                {% for message in get_flashed_messages(category_filter=['ate_breakfast']) %}
+                <p class="alert alert-danger d-flex align-items-center" id="login-error">{{ message }}</p>
+                {% endfor %}
+                <div class="mb-3 row">
+                    <label for="gym">Did you go to the gym today?</label>
+                    <div class="col-sm-10">
+                        <input type="radio" name="gym" id="gym" value="Yes" checked> Yes
+                        <input type="radio" name="gym" id="gym" value="No"> No
+                    </div>
+                </div>
+                {% for message in get_flashed_messages(category_filter=['gym']) %}
+                <p class="alert alert-danger d-flex align-items-center" id="login-error">{{ message }}</p>
+                {% endfor %}
+                <div class="mb-3 row">
+                    <label for="overall_happiness">Overall how happy are you today?</label>
+                    <div class="col-sm-10">
+                        <input type="range" name="overall_happiness" id="overall_happiness" class="slider" min="0" max="10" step="1" value="{{ day.overall_happiness }}">
+                        <div id="range-nums">
+                            Overall Happiness: <span id="happiness"></span>
+                        </div>
+                    </div>
+                </div>
+                {% for message in get_flashed_messages(category_filter=['overall_happiness']) %}
+                <p class="alert alert-danger d-flex align-items-center" id="login-error">{{ message }}</p>
+                {% endfor %}
+                <div class="mb-3 row">
+                    <label for="overall_productivity">Overall how productive were you today?</label>
+                    <div class="col-sm-10">
+                        <input type="range" name="overall_productivity" id="overall_productivity" class="slider" min="0" max="10" step="1" value="{{ day.overall_productivity }}">
+                    </div>
+                    <div id="range-nums">
+                        Overall Happiness: <span id="productivity"></span>
+                    </div>
+                </div>
+                {% for message in get_flashed_messages(category_filter=['overall_productivity']) %}
+                <p class="alert alert-danger d-flex align-items-center" id="login-error">{{ message }}</p>
+                {% endfor %}
+                <div class="mb-3 row">
+                    <label for="date">Entry Date:</label>
+                    <div class="col-sm-10">
+                        <input type="date" name="date" id="date" value="{{ day.date }}">
+                    </div>
+                </div>
+                {% for message in get_flashed_messages(category_filter=['date']) %}
+                <p class="alert alert-danger d-flex align-items-center" id="login-error">{{ message }}</p>
+                {% endfor %}
+                <div class="mb-3 row">
+                    <label for="comments">Any additional comments? (optional)</label>
+                    <div class="col-sm-10">
+                        <textarea name="comments" id="" cols="50" rows="10">{{ day.comments }}</textarea>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/log_day.js') }}"></script>
+</body>
+</html>

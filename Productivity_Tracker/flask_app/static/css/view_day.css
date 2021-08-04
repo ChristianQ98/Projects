@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 90%;
+    /* border: 2px solid black; */
+}
+
+#nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#main {
+    margin-left: 30%;
+    margin-top: 6%;
+}
+
+table {
+    margin-top: 2%;
+}
+
+td {
+    border: none;
+    font-size: 1.2rem;
+}
+
+table {
+    border: 2px solid black !important;
+    width: 70% !important;
+}
+
+.head {
+    font-weight: 700;
+}
